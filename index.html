@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title name  -->
+    <title>M D K | W O R D - C O U N</title>
+
+    <!-- Title logo link -->
+    <link rel="shortcut icon" sizes="32x32" href="./Word_Title.png" />
+
+    <!-- font awesome style sheet link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="word">
+        <h1>Word & Character Counter</h1>
+
+        <textarea id="textarea" cols="30" rows="10"></textarea>
+
+        <div class="design">
+            <h2> <span id="word">0</span> Words </h2>
+            <h2> <span id="character">0</span> Character </h2>
+        </div>
+    </div>
+
+</body>
+
+<style>
+    /*----------------------------------------------------------------------
+                            OVERALL STYLE STARTS HERE                         
+     ----------------------------------------------------------------------*/
+
+    :root {
+        --white: #fff;
+        --brown: #414141;
+        --light-brown: #b2a9a9;
+        --border: .1rem solid var(--brown);
+        --light-border: .2rem solid var(--white);
+        --dark-border: .2rem solid var(--brown);
+        --text-shadow: .1rem .1rem .1rem var(--brown);
+        --box-shadow: 0px 2px 20px 2px var(--white);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background: var(--light-brown);
+        text-decoration: none;
+    }
+
+    *::-webkit-scrollbar {
+        width: .4rem;
+        height: 1rem;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: var(--brown);
+    }
+
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    html {
+        min-width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        scroll-padding-top: 6rem;
+    }
+
+    .word {
+        border: var(--dark-border);
+        box-shadow: var(--box-shadow);
+        background: var(--brown);
+        max-width: 35rem;
+        width: 100%;
+        margin: 6rem auto;
+        padding: 1rem 2rem;
+        border-radius: .5rem;
+        transition: .3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+        text-align: center;
+        color: var(--white);
+        letter-spacing: .1rem;
+        background: transparent;
+        text-transform: uppercase;
+    }
+
+    textarea {
+        resize: none;
+        margin-top: .8rem;
+        width: 100%;
+        border-radius: .5rem;
+        font-size: 1.3rem;
+        background: var(--white);
+        padding: .5rem;
+        outline: none;
+        border: var(--light-border);
+    }
+
+    .design {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        background: transparent;
+        margin-top: 1rem;
+        justify-content: center;
+    }
+
+    h2,
+    span {
+        background: var(--white);
+        color: var(--brown);
+        border: var(--border);
+        padding: .2rem;
+    }
+
+    h2 {
+        padding: .5rem;
+    }
+
+    @media screen and (max-width:570px) {
+        html {
+            font-size: 65%;
+        }
+    }
+</style>
+
+<script>
+
+    const textArea = document.getElementById('textarea');
+
+    textArea.addEventListener('input', function () {
+        let text = this.value;
+        document.getElementById('character').innerHTML = text.length
+        text = text.trim();
+        let words = text.split(" ");
+        
+        let wordArr = words.filter(elm => elm != "");
+        
+        document.getElementById('word').innerHTML = wordArr.length;
+    });
+
+    /*--------- ctrl button lock Starts ---------- */
+    document.onkeydown = function (e) {
+        if (e.ctrlKey) {
+            return false;
+        }
+    };
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+</script>
+
+</html>
